@@ -12,6 +12,25 @@ project for level 2 for login2explore internship
 
 - JsonPowerDB is a Real-time, High Performance, Lightweight and Simple to Use, Rest API based Multi-mode DBMS. JsonPowerDB has ready to use API for Json document DB, RDBMS, Key-value DB, GeoSpatial DB and Time Series DB functionality. JPDB supports and advocates for true serverless and pluggable API development.
 
+### Release History:
+- This small project was released on 9-07-2021
+
+### Table of contents:
+-CRUD operations to JPDB
+
+## Scope of functionalties:
+- simple representation of AJAX capabilities using jQuery
+
+### Examples of use:
+- this project can be used for data entries to db by doing simple modificiations as required for the purpose
+
+## Project stuatus:
+- In progress
+
+## Sources: 
+- login2explore official documentations
+
+
 ### Benefits of using JsonPowerDB
 
 - Simplest way to retrieve data in a JSON format.
