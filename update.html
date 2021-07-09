@@ -74,24 +74,47 @@ and open the template in the editor.
           return;
         }
         var jsonObj = {
-          email: empEmailVar,
+          empName: empEmailVar,
         };
-        var reqString = createUPDATERecordRequest(
+        var reqString = createGET_BY_KEYRequest(
           token,
-          JSON.stringify(jsonObj),
           dbName,
           dbRel,
-          empName
+          JSON.stringify(jsonObj)
+          //empName
         );
         alert(reqString);
         jQuery.ajaxSetup({ async: false });
         var resultObj = executeCommandAtGivenUrl(
           reqString,
           "http://api.login2explore.com:5577",
-          "/api/iml"
+          "/api/irl"
         );
         jQuery.ajaxSetup({ async: true });
         alert(JSON.stringify(resultObj));
+        //extract rec_no from this resultOnj
+        //then by using rec_no. update th erecord with new email
+
+        var emailJsonObj = {
+          rec_no: {
+            empName: empEmailVar,
+          },
+        };
+        var reqUpdateStr = createUPDATERecordRequest(
+          token,
+          emailJsonObj,
+          dbName,
+          dbRel,
+          rec_no
+        );
+        jQuery.ajaxSetup({ async: false });
+        var finalResultObj = executeCommandAtGivenUrl(
+          reqUpdateStr,
+          "http://api.login2explore.com:5577",
+          "/api/irl"
+        );
+        jQuery.ajaxSetup({ async: true });
+        alert(JSON.stringify(finalResultObj));
       }
       resetForm();
     </script>
