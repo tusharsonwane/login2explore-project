@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>Delete Employee example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script
+        src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+
+
+    </head>
+    <body>
+        <div class="container">
+            <h2>Delete Employee</h2>
+            <form id="empForm" method="post">
+                <div class="form-group">
+                    <span><label for="empId">Employee ID:</label> <label id="empIdMsg">
+                        </label></span>
+                    <input type="text" class="form-control" name="empId" id="empId"
+                           placeholder="Enter Employee ID" required>
+                </div>
+
+                <input type="button" class="btn btn-primary" id="empSave" value="Delete Record"
+                       onclick="deleteData();">
+            </form>
+        </div>
+        <script>
+
+            var token = "90935886|";
+            function resetForm() {
+                $("#empId").val("");
+                $("#empId").focus();
+            }
+            function deleteData() {
+                var dbname = "Employee";
+                var relationName = "EMP-REL";
+                var empId = parseInt(document.getElementById("empId").value);
+                var reqString = createREMOVERecordRequest(token, dbname, relationName, empId);
+                alert(reqString);
+                jQuery.ajaxSetup({async: false});
+                var resultObj = executeCommandAtGivenBaseUrl(reqString,
+                        "http://api.login2explore.com:5577", "/api/iml");
+                jQuery.ajaxSetup({async: true});
+
+                alert(JSON.stringify(resultObj));
+                resetForm();
+            }
+
+
+        </script>
+    </body>
+</html>
+
