@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+  <head>
+    <title>Update Data</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Update Data</h2>
+      <form id="empForm" method="post">
+        <div class="form-group">
+          <span
+            ><label for="empName">Employee Name</label>
+            <label id="empName"> </label
+          ></span>
+          <input
+            type="text"
+            class="form-control"
+            name="empId"
+            id="empName"
+            placeholder="Enter Employee Name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <p>You can change your Email Id only</p>
+
+          <label for="empEmail">Email:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="empEmail"
+            placeholder="Enter Employee Email"
+            name="empEmail"
+          />
+        </div>
+        <input
+          type="button"
+          class="btn btn-primary"
+          id="empSave"
+          value="Save"
+          onclick="updateData();"
+        />
+      </form>
+    </div>
+    <script>
+      var token = "90935886|-31948845205725422|90944908";
+      var dbName = "Company";
+      var dbRel = "Employee";
+
+      function resetForm() {
+        $("#empId").val("");
+        $("#empName").val("");
+        $("#empEmail").val("");
+        $("#empId").focus();
+      }
+      function updateData() {
+        var empEmailVar = $("#empEmail").val();
+        if (empEmailVar === "") {
+          return;
+        }
+        var jsonObj = {
+          email: empEmailVar,
+        };
+        var reqString = createUPDATERecordRequest(
+          token,
+          JSON.stringify(jsonObj),
+          dbName,
+          dbRel,
+          empName
+        );
+        alert(reqString);
+        jQuery.ajaxSetup({ async: false });
+        var resultObj = executeCommandAtGivenUrl(
+          reqString,
+          "http://api.login2explore.com:5577",
+          "/api/iml"
+        );
+        jQuery.ajaxSetup({ async: true });
+        alert(JSON.stringify(resultObj));
+      }
+      resetForm();
+    </script>
+  </body>
+</html>
