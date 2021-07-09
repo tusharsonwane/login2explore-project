@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+  <head>
+    <title>Show Employee</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Show Employee</h2>
+      <form id="empForm" method="post">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="empName"
+            id="empName"
+            placeholder="Enter Employee "
+          />
+        </div>
+
+        <input
+          type="button"
+          class="btn btn-primary"
+          id="empSave"
+          value="Show Record"
+          onclick="showData();"
+        />
+      </form>
+      <p id="show"></p>
+    </div>
+    <script>
+      var token = "90935886|-31948845205725422|90944908";
+      var dbName = "Company";
+      var dbRel = "Employee";
+
+      function executeCommand(reqString, dbBaseUrl, apiEndPointUrl) {
+        var url = dbBaseUrl + apiEndPointUrl;
+        var jsonObj;
+        $.post(url, reqString, function (result) {
+          jsonObj = JSON.parse(result);
+        }).fail(function (result) {
+          var dataJsonObj = result.responseText;
+          jsonObj = JSON.parse(dataJsonObj);
+        });
+        return jsonObj;
+      }
+      function showData() {
+        var empNameVar = document.getElementById("empName").value;
+        var jsonStr = {
+          empName: empNameVar,
+        };
+        var reqString = createGETRequest(
+          token,
+          dbName,
+          dbRel,
+          JSON.stringify(jsonStr)
+        );
+        alert(reqString);
+        jQuery.ajaxSetup({ async: false });
+        var resultObj = executeCommand(
+          reqString,
+          "http://api.login2explore.com:5577",
+          "/api/irl"
+        );
+        jQuery.ajaxSetup({ async: true });
+
+        var data = JSON.stringify(resultObj);
+        alert(data);
+      }
+    </script>
+  </body>
+</html>
