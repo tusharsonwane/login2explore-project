@@ -22,9 +22,10 @@ project for level 2 for login2explore internship
 
 ### Screenshots:
 
-![index page](https://github.com/tusharsonwane/JsonPowerDB/blob/master/Assets/Screenshots/index.PNG)
+![index page](https://github.com/tusharsonwane/login2explore-project/blob/main/Assets/Screenshots/index.png)
 
-![Dashboard Page](https://github.com/tusharsonwane/JsonPowerDB/blob/master/Assets/Screenshots/Dashboard.PNG)
 
-![Visualize](https://github.com/tusharsonwane/JsonPowerDB/blob/master/Assets/Screenshots/Visualize.PNG)
+![Dashboard Page](https://github.com/tusharsonwane/login2explore-project/blob/main/Assets/Screenshots/Dashboard.png)
+
+![Visualize](https://github.com/tusharsonwane/login2explore-project/blob/main/Assets/Screenshots/Visualize.png)
 
