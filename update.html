@@ -22,14 +22,10 @@ and open the template in the editor.
       <h2>Update Data</h2>
       <form id="empForm" method="post">
         <div class="form-group">
-          <span
-            ><label for="empName">Employee Name</label>
-            <label id="empName"> </label
-          ></span>
           <input
             type="text"
             class="form-control"
-            name="empId"
+            name="empName"
             id="empName"
             placeholder="Enter Employee Name"
             required
@@ -70,11 +66,12 @@ and open the template in the editor.
       }
       function updateData() {
         var empEmailVar = $("#empEmail").val();
+        var empNameVar = $("#empName").val();
         if (empEmailVar === "") {
           return;
         }
         var jsonObj = {
-          empName: empEmailVar,
+          empName: empNameVar,
         };
         var reqString = createGET_BY_KEYRequest(
           token,
@@ -83,17 +80,17 @@ and open the template in the editor.
           JSON.stringify(jsonObj)
           //empName
         );
-        alert(reqString);
+        //alert(reqString);
         jQuery.ajaxSetup({ async: false });
-        var resultObj = executeCommandAtGivenUrl(
+        var resultObj = executeCommandAtGivenBaseUrl(
           reqString,
           "http://api.login2explore.com:5577",
           "/api/irl"
         );
         jQuery.ajaxSetup({ async: true });
-        alert(JSON.stringify(resultObj));
-        //extract rec_no from this resultOnj
-        //then by using rec_no. update th erecord with new email
+        //extract rec_no from this resultObj.data
+        let rec_no;
+        //then by using rec_no. update the record with new email
 
         var emailJsonObj = {
           rec_no: {
@@ -114,7 +111,6 @@ and open the template in the editor.
           "/api/irl"
         );
         jQuery.ajaxSetup({ async: true });
-        alert(JSON.stringify(finalResultObj));
       }
       resetForm();
     </script>
