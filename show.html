@@ -46,17 +46,6 @@ and open the template in the editor.
       var dbName = "Company";
       var dbRel = "Employee";
 
-      function executeCommand(reqString, dbBaseUrl, apiEndPointUrl) {
-        var url = dbBaseUrl + apiEndPointUrl;
-        var jsonObj;
-        $.post(url, reqString, function (result) {
-          jsonObj = JSON.parse(result);
-        }).fail(function (result) {
-          var dataJsonObj = result.responseText;
-          jsonObj = JSON.parse(dataJsonObj);
-        });
-        return jsonObj;
-      }
       function showData() {
         var empNameVar = document.getElementById("empName").value;
         var jsonStr = {
@@ -70,7 +59,7 @@ and open the template in the editor.
         );
         alert(reqString);
         jQuery.ajaxSetup({ async: false });
-        var resultObj = executeCommand(
+        var resultObj = executeCommandAtGivenBaseUrl(
           reqString,
           "http://api.login2explore.com:5577",
           "/api/irl"
