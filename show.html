@@ -39,7 +39,9 @@ and open the template in the editor.
           onclick="showData();"
         />
       </form>
-      <p id="show"></p>
+      <br />
+      <h2>Emplyee Data:</h2>
+      <div id="showEmpData"></div>
     </div>
     <script>
       var token = "90935886|-31948845205725422|90944908";
@@ -57,7 +59,8 @@ and open the template in the editor.
           dbRel,
           JSON.stringify(jsonStr)
         );
-        alert(reqString);
+        //alert(reqString);
+
         jQuery.ajaxSetup({ async: false });
         var resultObj = executeCommandAtGivenBaseUrl(
           reqString,
@@ -65,9 +68,9 @@ and open the template in the editor.
           "/api/irl"
         );
         jQuery.ajaxSetup({ async: true });
-
-        var data = JSON.stringify(resultObj);
-        alert(data);
+        //show received data on the web page
+        document.getElementById("showEmpData").innerHTML +=
+          "\n" + resultObj.data;
       }
     </script>
   </body>
